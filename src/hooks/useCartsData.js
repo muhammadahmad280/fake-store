@@ -6,7 +6,7 @@ import {
   createCartApi,
   updateCartApi,
   deleteCartApi,
-} from "../api/cartApi";
+} from "../service/cartApi";
 
 const LOCAL_CARTS_KEY = "myAppCarts";
 const LOCAL_PRODUCTS_KEY = "myAppProductsCache";
