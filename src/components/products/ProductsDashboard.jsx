@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import ProductForm from "./ProductForm";
 
+
 const initialProductState = {
   title: "",
   price: "",
@@ -104,15 +105,16 @@ function ProductsDashboard() {
   return (
     <div className="p-6">
       <div className="flex justify-between mb-6">
-        <h1 className="text-3xl font-bold text-blue-600">📦 All Products</h1>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          + Add Product
-        </button>
-      </div> 
-
+          <h1 className="text-3xl font-bold text-blue-600">📦 All Products</h1>
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+          >
+            + Add Product
+          </button>
+        </div>
+      
+      
       {/* Add Modal */}
       <Modal isOpen={showAddModal} onClose={() => setShowAddModal(false)}>
         <h2 className="text-xl font-bold mb-4">Add New Product</h2>
@@ -123,7 +125,7 @@ function ProductsDashboard() {
           onCancel={() => setShowAddModal(false)}
         />
       </Modal>
-
+      
       {/* Edit Modal */}
       <Modal isOpen={!!editProduct} onClose={cancelEdit}>
         <h2 className="text-xl font-bold mb-4">
@@ -139,64 +141,60 @@ function ProductsDashboard() {
       </Modal>
 
       <div className="overflow-x-auto">
-       <table className="min-w-full border border-gray-300">
-  <thead className="bg-gray-50 text-black">
-    <tr>
-      <th className=" px-4 py-5 text-left">ID</th>
-      <th className=" px-4 py-5 text-left">Image</th>
-      <th className=" px-4 py-5 text-left">Title</th>
-      <th className=" px-4 py-5 text-left">Price</th>
-      <th className=" px-4 py-5 text-left">Category</th>
-      <th className=" px-4 py-5 text-left">Rating</th>
-      <th className=" px-4 py-5 text-left">Actions</th>
-    </tr>
-  </thead>
-  <tbody className="bg-white divide-y divide-gray-100">
-    {products.map((product) => (
-      <tr key={product.id} className="hover:bg-gray-50">
-        <td className="px-4 py-2  font-semibold text-blue-600">
-          #{product.id}
-        </td>
-        <td className="px-4 py-2 ">
-          <img
-            src={product.image}
-            alt="img"
-            className="w-10 h-10 object-contain"
-          />
-        </td>
-        <td className="px-4 py-2  text-black">
-          {product.title}
-        </td>
-        <td className="px-4 py-2  text-black">
-          ${parseFloat(product.price).toFixed(2)}
-        </td>
-        <td className="px-4 py-2  text-black">
-          {product.category}
-        </td>
-        <td className="px-4 py-2  text-black">
-          {product.rating?.rate} ⭐ ({product.rating?.count})
-        </td>
-        <td className="px-4 py-2 ">
-          <div className="flex gap-2 justify-end">
-            <button
-              onClick={() => startEdit(product)}
-              className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full"
-            >
-              <PencilIcon className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => handleDelete(product.id)}
-              className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-full"
-            >
-              <TrashIcon className="w-4 h-4" />
-            </button>
-          </div>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-
+        <table className="min-w-full border border-gray-300">
+          <thead className="bg-gray-50 text-black">
+            <tr>
+              <th className=" px-4 py-5 text-left">ID</th>
+              <th className=" px-4 py-5 text-left">Image</th>
+              <th className=" px-4 py-5 text-left">Title</th>
+              <th className=" px-4 py-5 text-left">Price</th>
+              <th className=" px-4 py-5 text-left">Category</th>
+              <th className=" px-4 py-5 text-left">Rating</th>
+              <th className=" px-4 py-5 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-100">
+            {products.map((product) => (
+              <tr key={product.id} className="hover:bg-gray-50">
+                <td className="px-4 py-2  font-semibold text-blue-600">
+                  #{product.id}
+                </td>
+                <td className="px-4 py-2 ">
+                  <img
+                    src={product.image}
+                    alt="img"
+                    className="w-10 h-10 object-contain"
+                  />
+                </td>
+                <td className="px-4 py-2  text-black">{product.title}</td>
+                <td className="px-4 py-2  text-black">
+                  ${parseFloat(product.price).toFixed(2)}
+                </td>
+                <td className="px-4 py-2  text-black">{product.category}</td>
+                <td className="px-4 py-2  text-black">
+                  {product.rating?.rate} ⭐ ({product.rating?.count})
+                </td>
+                <td className="px-4 py-2 ">
+                  <div className="flex gap-2 justify-end">
+                    <button
+                      onClick={() => startEdit(product)}
+                      className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full"
+                    >
+                      <PencilIcon className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(product.id)}
+                      className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-full"
+                    >
+                      <TrashIcon className="w-4 h-4" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
